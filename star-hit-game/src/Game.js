@@ -35,6 +35,19 @@ const Game = () => {
     }, [createObject, score]); // Added createObject and score to the dependency array
 
 
+    // Add a new object to the objects array
+    const createObject2 = useCallback(() => {
+        const newObject = {
+            id: Math.random(),
+            x: Math.random() * window.innerWidth,
+            y: 0,
+            size: Math.random() * (120 - 10) + 10, // Random size between 10 and 80
+            color: getRandomColor(),
+            type: Math.random() > 0.5 ? 'star' : 'bomb' // Randomly choose type
+        };
+        setObjects(prevObjects => [...prevObjects, newObject]);
+    }, []); // No dependencies
+
     const getRandomColor = () => {
         const letters = '0123456789ABCDEF';
         let color = '#';
